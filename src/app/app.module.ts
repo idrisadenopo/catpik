@@ -10,6 +10,7 @@ import { HeartComponent } from './heart/heart.component';
 import { ReloadComponent } from './reload/reload.component';
 import { ReloadIconComponent } from './reload-icon/reload-icon.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { FavouriteCatsDisplayComponent } from './favourite-cats-display/favourite-cats-display.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './auth.interceptor';
     HeartComponent,
     ReloadComponent,
     ReloadIconComponent,
+    FavouriteCatsDisplayComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
