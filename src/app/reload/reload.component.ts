@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { CatsService } from '../cats.service';
-import { CatsDisplayComponent } from '../cats-display/cats-display.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Cat, CatsService } from '../cats.service';
 
 @Component({
   selector: 'app-reload',
@@ -8,12 +7,15 @@ import { CatsDisplayComponent } from '../cats-display/cats-display.component';
   styleUrls: ['./reload.component.scss'],
 })
 export class ReloadComponent {
-  constructor(
-    public catsService: CatsService,
-    public catDisplayComponent: CatsDisplayComponent,
-  ) {}
+  constructor(public catsService: CatsService) {}
+  @Input() cats: Cat[] | undefined;
+  @Output() catsUpdate = new EventEmitter<Cat[]>();
 
-  showCats() {
-    this.catDisplayComponent.showCats();
+  realoadCats() {
+    this.catsService.getRandomCats().subscribe(newCats => {
+      console.log('cat', newCats);
+      this.catsUpdate.emit(newCats.cats);
+      console.log(this.cats);
+    });
   }
 }

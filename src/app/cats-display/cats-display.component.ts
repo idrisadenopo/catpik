@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
 
 @Component({
@@ -6,14 +6,13 @@ import { Cat, CatsService } from '../cats.service';
   templateUrl: './cats-display.component.html',
   styleUrls: ['./cats-display.component.scss'],
 })
-export class CatsDisplayComponent {
+export class CatsDisplayComponent implements OnInit {
   constructor(public catsService: CatsService) {}
 
   cats: Cat[] | undefined;
 
   ngOnInit() {
     this.showCats();
-    this.catsService.getFavourites().subscribe();
   }
 
   showCats() {

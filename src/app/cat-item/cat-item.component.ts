@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
-import { CatsDisplayComponent } from '../cats-display/cats-display.component';
 
 @Component({
   selector: 'app-cat-item',
@@ -8,24 +7,21 @@ import { CatsDisplayComponent } from '../cats-display/cats-display.component';
   styleUrls: ['./cat-item.component.scss'],
 })
 export class CatItemComponent {
-  constructor(
-    public catsService: CatsService,
-    public catDisplayComponent: CatsDisplayComponent,
-  ) {}
+  constructor(public catsService: CatsService) {}
   @Input() cat: Cat | undefined;
+  @Input() cats: Cat[] | undefined;
+  @Output() catsUpdate = new EventEmitter<Cat[]>();
 
   addToFavourites(id: number) {
     console.log('adding');
     this.catsService.addToFavourites(id).subscribe(() => {
-      const catIndex = this.catDisplayComponent.cats?.findIndex(
-        cat => cat.id === id,
-      );
+      const catIndex = this.cats?.findIndex(cat => cat.id === id);
       console.log('catIndex', catIndex);
       if (catIndex !== undefined) {
         this.catsService.getRandomCats().subscribe(newCats => {
           console.log('cat', newCats);
-          this.catDisplayComponent.cats = newCats.cats;
-          console.log(this.catDisplayComponent.cats);
+          this.catsUpdate.emit(newCats.cats);
+          console.log(this.cats);
         });
         // this.catsService.getRandomCat().subscribe((newCat) => {
         //   console.log('cat', newCat);
