@@ -1,0 +1,9 @@
+<div *ngIf="cat" class="my-8 relative">
+  <img class="rounded-lg w-full" [src]="cat.url" />
+  <button
+    class="bg-white h-14 w-14 rounded-full p-2 absolute top-0 right-0 mr-2 mt-2 flex items-center justify-center hover:bg-blue-100"
+    (click)="addToFavourites(cat.id)"
+  >
+    <app-heart></app-heart>
+  </button>
+</div>
