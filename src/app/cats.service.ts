@@ -14,21 +14,25 @@ export interface Cat {
 export class CatsService {
   constructor(private http: HttpClient) {}
 
+  baseUrl = process.env['BASE_URL'] || '';
+
   getRandomCats() {
-    return this.http.get<{ cats: Cat[] }>('/api/cats');
+    return this.http.get<{ cats: Cat[] }>(this.baseUrl + '/api/cats');
   }
 
   getFavourites() {
-    return this.http.get<{ cats: Cat[] }>('/api/cats/favourites');
+    return this.http.get<{ cats: Cat[] }>(
+      this.baseUrl + '/api/cats/favourites',
+    );
   }
 
   getRandomCat() {
-    return this.http.get<Cat>('/api/cats/cat');
+    return this.http.get<Cat>(this.baseUrl + '/api/cats/cat');
   }
 
   addToFavourites(catId: number) {
     return this.http
-      .post('/api/favourites', {
+      .post(this.baseUrl + '/api/favourites', {
         catId,
       })
       .pipe(
@@ -41,7 +45,9 @@ export class CatsService {
   }
 
   removeFromFavourites(catId: number) {
-    return this.http.delete('/api/favourites', { body: { catId } });
+    return this.http.delete(this.baseUrl + '/api/favourites', {
+      body: { catId },
+    });
   }
 
   addToLocalFavourites(id: number) {
