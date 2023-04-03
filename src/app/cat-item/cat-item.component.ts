@@ -1,11 +1,27 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
 import { ToastrService } from 'ngx-toastr';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-cat-item',
   templateUrl: './cat-item.component.html',
   styleUrls: ['./cat-item.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(400, style({ opacity: 1 })),
+      ]),
+      transition(':leave', [animate(400, style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class CatItemComponent {
   constructor(public catsService: CatsService, private toastr: ToastrService) {}
