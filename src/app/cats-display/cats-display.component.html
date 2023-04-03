@@ -10,7 +10,7 @@
   ></app-cat-item>
   <app-reload [cats]="cats" (catsUpdate)="cats = $event"></app-reload>
 </div>
-<ng-template #noCats class="absolute justify-center items-center text-center">
+<ng-template #noCats class="absolute justify-center items-center text-start">
   <app-card
     image="../../assets/out-of-stock.png"
     title="We're all out!"

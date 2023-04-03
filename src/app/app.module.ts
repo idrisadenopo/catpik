@@ -13,6 +13,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { FavouriteCatsDisplayComponent } from './favourite-cats-display/favourite-cats-display.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
+import { AddYourPikComponent } from './add-your-pik/add-your-pik.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CardComponent } from './card/card.component';
     FavouriteCatsDisplayComponent,
     NavbarComponent,
     CardComponent,
+    AddYourPikComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
