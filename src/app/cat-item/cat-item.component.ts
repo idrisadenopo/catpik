@@ -36,7 +36,7 @@ export class CatItemComponent {
 
   getHeartColor(id: number) {
     return this.catsService.isInLocalFavourites(id)
-      ? 'fill-red-400 stroke-red-400'
-      : '';
+      ? 'fill-catpik-tertiary stroke-catpik-tertiary'
+      : 'fill-none stroke-catpik-tertiary';
   }
 }
