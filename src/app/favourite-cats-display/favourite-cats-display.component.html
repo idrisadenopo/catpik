@@ -1,7 +1,19 @@
-<div class="columns-1 md:columns-2 lg:columns-3 p-5 rounded-lg relative">
+<div
+  *ngIf="cats && cats.length > 0; else noCats"
+  class="columns-1 md:columns-2 lg:columns-3 p-5 rounded-lg relative"
+>
   <app-cat-item
     *ngFor="let cat of cats"
     [cat]="cat"
     [cats]="cats"
   ></app-cat-item>
 </div>
+<ng-template #noCats class="absolute justify-center items-center text-center">
+  <app-card
+    image="../../assets/basket.png"
+    title="You haven't pikked any cats"
+    text="Go to the store and get pikking!"
+    buttonText="Pik"
+    (buttonClicked)="navigateToHome()"
+  ></app-card>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favourite-cats-display',
@@ -7,7 +8,7 @@ import { Cat, CatsService } from '../cats.service';
   styleUrls: ['./favourite-cats-display.component.scss'],
 })
 export class FavouriteCatsDisplayComponent implements OnInit {
-  constructor(private catsService: CatsService) {}
+  constructor(private catsService: CatsService, private router: Router) {}
 
   cats: Cat[] | undefined;
 
@@ -20,5 +21,9 @@ export class FavouriteCatsDisplayComponent implements OnInit {
     this.catsService.getFavourites().subscribe(cats => {
       this.cats = cats.cats;
     });
+  }
+
+  navigateToHome() {
+    this.router.navigateByUrl('/');
   }
 }
