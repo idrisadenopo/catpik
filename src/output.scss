@@ -979,3 +979,22 @@ video {
          columns: 3;
   }
 }
+
+@media (min-width: 1280px) {
+  .xl\:columns-4 {
+    -moz-columns: 4;
+         columns: 4;
+  }
+
+  .xl\:columns-5 {
+    -moz-columns: 5;
+         columns: 5;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:columns-5 {
+    -moz-columns: 5;
+         columns: 5;
+  }
+}
