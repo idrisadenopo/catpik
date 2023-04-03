@@ -1,5 +1,5 @@
 <div
-  *ngIf="cats && cats.length === 0; else catsExist"
+  *ngIf="!cats || (cats && cats.length === 0); else catsExist"
   class="container mx-auto justify-center items-center text-start"
 >
   <app-card
