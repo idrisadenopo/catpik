@@ -14,6 +14,8 @@ import { FavouriteCatsDisplayComponent } from './favourite-cats-display/favourit
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
 import { AddYourPikComponent } from './add-your-pik/add-your-pik.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,13 @@ import { AddYourPikComponent } from './add-your-pik/add-your-pik.component';
     CardComponent,
     AddYourPikComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

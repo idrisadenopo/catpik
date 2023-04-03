@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 
 export interface Cat {
   id: number;
   name: string;
   url: string;
-  isFavourite?: boolean;
 }
 
 @Injectable({
@@ -27,9 +27,17 @@ export class CatsService {
   }
 
   addToFavourites(catId: number) {
-    return this.http.post('/api/favourites', {
-      catId,
-    });
+    return this.http
+      .post('/api/favourites', {
+        catId,
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (Number(error.status) === 409)
+            return throwError(() => new Error('tried faving cat'));
+          return throwError(() => new Error());
+        }),
+      );
   }
 
   removeFromFavourites(catId: number) {
@@ -65,7 +73,7 @@ export class CatsService {
     return false;
   }
 
-  addLocalFavouritesToFavourites() {
+  async addLocalFavouritesToFavourites() {
     console.log('runnung addtoLoc');
     const localFavourites = this.getLocalFavourites();
     let serverFavourites: number[] = [];
