@@ -12,9 +12,11 @@ export class CatItemComponent {
   @Input() cats: Cat[] | undefined;
   @Output() catsUpdate = new EventEmitter<Cat[]>();
 
+  // TODO: use pipe()
   addToFavourites(id: number) {
     console.log('adding');
     this.catsService.addToFavourites(id).subscribe(() => {
+      this.catsService.addToLocalFavourites(id);
       const catIndex = this.cats?.findIndex(cat => cat.id === id);
       console.log('catIndex', catIndex);
       if (catIndex !== undefined) {
@@ -30,5 +32,11 @@ export class CatItemComponent {
         // });
       }
     });
+  }
+
+  getHeartColor(id: number) {
+    return this.catsService.isInLocalFavourites(id)
+      ? 'fill-red-400 stroke-red-400'
+      : '';
   }
 }

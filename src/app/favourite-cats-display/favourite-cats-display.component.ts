@@ -12,10 +12,13 @@ export class FavouriteCatsDisplayComponent implements OnInit {
   cats: Cat[] | undefined;
 
   ngOnInit() {
+    this.catsService.addLocalFavouritesToFavourites();
     this.showFavouriteCats();
   }
 
   showFavouriteCats() {
-    this.catsService.getFavourites().subscribe(cats => (this.cats = cats.cats));
+    this.catsService.getFavourites().subscribe(cats => {
+      this.cats = cats.cats;
+    });
   }
 }

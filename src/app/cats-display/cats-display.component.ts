@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
+import { Observable, Subject, Subscription, from, of, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-cats-display',
@@ -11,11 +12,14 @@ export class CatsDisplayComponent implements OnInit {
 
   cats: Cat[] | undefined;
 
-  ngOnInit() {
+  // TODO: make calls run in sequence
+  async ngOnInit() {
+    this.catsService.addLocalFavouritesToFavourites();
     this.showCats();
   }
 
   showCats() {
+    console.log('running showcats');
     this.catsService.getRandomCats().subscribe(cats => (this.cats = cats.cats));
   }
 }
