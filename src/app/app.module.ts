@@ -11,6 +11,8 @@ import { ReloadComponent } from './reload/reload.component';
 import { ReloadIconComponent } from './reload-icon/reload-icon.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { FavouriteCatsDisplayComponent } from './favourite-cats-display/favourite-cats-display.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { FavouriteCatsDisplayComponent } from './favourite-cats-display/favourit
     ReloadComponent,
     ReloadIconComponent,
     FavouriteCatsDisplayComponent,
+    NavbarComponent,
+    CardComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
