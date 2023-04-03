@@ -11,6 +11,7 @@ export class FavouriteCatsDisplayComponent implements OnInit {
   constructor(private catsService: CatsService, private router: Router) {}
 
   cats: Cat[] | undefined;
+  loading = true;
 
   ngOnInit() {
     this.catsService.addLocalFavouritesToFavourites();
@@ -20,6 +21,7 @@ export class FavouriteCatsDisplayComponent implements OnInit {
   showFavouriteCats() {
     this.catsService.getFavourites().subscribe(cats => {
       this.cats = cats.cats;
+      this.loading = false;
     });
   }
 

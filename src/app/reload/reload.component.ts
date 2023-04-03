@@ -10,11 +10,14 @@ export class ReloadComponent {
   constructor(public catsService: CatsService) {}
   @Input() cats: Cat[] | undefined;
   @Output() catsUpdate = new EventEmitter<Cat[]>();
+  @Output() loadingUpdate = new EventEmitter<boolean>();
 
   realoadCats() {
+    this.loadingUpdate.emit(true);
     this.catsService.getRandomCats().subscribe(newCats => {
       console.log('cat', newCats);
       this.catsUpdate.emit(newCats.cats);
+      this.loadingUpdate.emit(false);
       console.log(this.cats);
     });
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
-import { Observable, Subject, Subscription, from, of, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-cats-display',
@@ -11,6 +10,7 @@ export class CatsDisplayComponent implements OnInit {
   constructor(public catsService: CatsService) {}
 
   cats: Cat[] | undefined;
+  loading = true;
 
   // TODO: make calls run in sequence
   async ngOnInit() {
@@ -20,6 +20,9 @@ export class CatsDisplayComponent implements OnInit {
 
   showCats() {
     console.log('running showcats');
-    this.catsService.getRandomCats().subscribe(cats => (this.cats = cats.cats));
+    this.catsService.getRandomCats().subscribe(cats => {
+      this.cats = cats.cats;
+      this.loading = false;
+    });
   }
 }

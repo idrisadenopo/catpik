@@ -1,4 +1,10 @@
 <div
+  *ngIf="loading"
+  class="w-full min-h-screen flex items-center justify-center"
+>
+  pikking...
+</div>
+<div
   *ngIf="!cats || (cats && cats.length === 0); else catsExist"
   class="container mx-auto justify-center items-center text-start"
 >
@@ -20,6 +26,10 @@
       [cats]="cats"
       (catsUpdate)="cats = $event"
     ></app-cat-item>
-    <app-reload [cats]="cats" (catsUpdate)="cats = $event"></app-reload>
+    <app-reload
+      [cats]="cats"
+      (catsUpdate)="cats = $event"
+      (loadingUpdate)="loading = $event"
+    ></app-reload>
   </div>
 </ng-template>
