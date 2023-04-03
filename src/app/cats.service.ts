@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Cat {
   id: number;
@@ -14,25 +15,23 @@ export interface Cat {
 export class CatsService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = process.env['BASE_URL'] || '';
+  baseUrl = environment.baseUrl;
 
   getRandomCats() {
-    return this.http.get<{ cats: Cat[] }>(this.baseUrl + '/api/cats');
+    return this.http.get<{ cats: Cat[] }>(this.baseUrl + '/cats');
   }
 
   getFavourites() {
-    return this.http.get<{ cats: Cat[] }>(
-      this.baseUrl + '/api/cats/favourites',
-    );
+    return this.http.get<{ cats: Cat[] }>(this.baseUrl + '/cats/favourites');
   }
 
   getRandomCat() {
-    return this.http.get<Cat>(this.baseUrl + '/api/cats/cat');
+    return this.http.get<Cat>(this.baseUrl + '/cats/cat');
   }
 
   addToFavourites(catId: number) {
     return this.http
-      .post(this.baseUrl + '/api/favourites', {
+      .post(this.baseUrl + '/favourites', {
         catId,
       })
       .pipe(
@@ -45,7 +44,7 @@ export class CatsService {
   }
 
   removeFromFavourites(catId: number) {
-    return this.http.delete(this.baseUrl + '/api/favourites', {
+    return this.http.delete(this.baseUrl + '/favourites', {
       body: { catId },
     });
   }
