@@ -17,6 +17,7 @@ import { AddYourPikComponent } from './add-your-pik/add-your-pik.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CatImageComponent } from './cat-image/cat-image.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CatImageComponent } from './cat-image/cat-image.component';
     CardComponent,
     AddYourPikComponent,
     CatImageComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
