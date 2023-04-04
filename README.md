@@ -1,27 +1,38 @@
 # Catpik
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+## 🧱 Local development
 
-## Development server
+### `npm install`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Installs the dependencies
 
-## Code scaffolding
+### `npm run start:proxy`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Runs the app in the development mode.\
+Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+
+This makes use of a proxy to enable it to call the backend successfully.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 🚀 Deployment
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The web app is live at [https://catpik.vercel.app](https://catpik.vercel.app)
 
-## Running end-to-end tests
+## 👎🏾 What are the limitations/problems?
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. There isn't much error handling in case an API call fails or returns unexpected data.
+2. There is no testing setup.
+3. There are some inconsistency when loading images and hearts.
+4. Loading of images is slow on production but works well locally
+5. Animations are fluid locally but not as good on production
+6. Cats cannot be removed from favourites
 
-## Further help
+## ⏳ With more time
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. I would address the issues mentioned above.
+2. Learn more about Angular's features and see how they could make the web app better. E.g. lifecycle methods, better use of reactive features etc.
+3. Allow uploading of your own cat images
+
