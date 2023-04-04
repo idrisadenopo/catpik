@@ -28,8 +28,9 @@ export class CatItemComponent {
   @Input() cat: Cat | undefined;
   @Input() cats: Cat[] | undefined;
   @Output() catsUpdate = new EventEmitter<Cat[]>();
+  imageHasLoaded = false;
 
-  // TODO: use pipe()
+  // TODO: use observer
   addToFavourites(id: number) {
     console.log('adding');
     this.catsService.addToFavourites(id).subscribe(
@@ -43,11 +44,6 @@ export class CatItemComponent {
             this.catsUpdate.emit(newCats.cats);
             console.log(this.cats);
           });
-          // this.catsService.getRandomCat().subscribe((newCat) => {
-          //   console.log('cat', newCat);
-          //   this.catDisplayComponent.cats?.splice(catIndex, 1, newCat);
-          //   console.log(this.catDisplayComponent.cats);
-          // });
         }
       },
       (error: Error) => {

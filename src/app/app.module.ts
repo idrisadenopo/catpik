@@ -16,6 +16,7 @@ import { CardComponent } from './card/card.component';
 import { AddYourPikComponent } from './add-your-pik/add-your-pik.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CatImageComponent } from './cat-image/cat-image.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     CardComponent,
     AddYourPikComponent,
+    CatImageComponent,
   ],
   imports: [
     BrowserModule,
