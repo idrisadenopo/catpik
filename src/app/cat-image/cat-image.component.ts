@@ -14,6 +14,7 @@ import { Cat } from '../cats.service';
 })
 export class CatImageComponent implements AfterViewChecked {
   @Input() cat: Cat | undefined;
+  @Input() priority = true;
   @Output() finishedLoading = new EventEmitter<boolean>();
 
   ngAfterViewChecked() {

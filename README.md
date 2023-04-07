@@ -25,9 +25,9 @@ The web app is live at [https://catpik.vercel.app](https://catpik.vercel.app)
 
 1. There isn't much error handling in case an API call fails or returns unexpected data.
 2. There is no testing setup.
-3. There are some inconsistency when loading images and hearts.
-4. Loading of images is slow on production but works well locally
-5. Animations are fluid locally but not as good on production
+3. ~~There are some inconsistency when loading images and hearts.~~
+4. ~~Loading of images is slow on production but works well locally~~
+5. ~~Animations are fluid locally but not as good on production~~
 6. Cats cannot be removed from favourites
 
 ## ⏳ With more time

@@ -1,13 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Cat, CatsService } from '../cats.service';
 import { ToastrService } from 'ngx-toastr';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cat-item',
@@ -27,6 +21,7 @@ export class CatItemComponent {
   constructor(public catsService: CatsService, private toastr: ToastrService) {}
   @Input() cat: Cat | undefined;
   @Input() cats: Cat[] | undefined;
+  @Input() priority = true;
   @Output() catsUpdate = new EventEmitter<Cat[]>();
   imageHasLoaded = false;
 

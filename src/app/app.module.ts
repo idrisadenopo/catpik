@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CatImageComponent } from './cat-image/cat-image.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { NgOptimizedImage, provideImageKitLoader } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgOptimizedImage,
   ],
   providers: [
     {
@@ -47,6 +49,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
       useClass: AuthInterceptor,
       multi: true,
     },
+    provideImageKitLoader('https://ik.imagekit.io/idrisadenopo/catpik'),
   ],
   bootstrap: [AppComponent],
 })

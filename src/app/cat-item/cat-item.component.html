@@ -6,6 +6,7 @@
   <app-cat-image
     (finishedLoading)="imageHasLoaded = $event"
     [cat]="cat"
+    [priority]="priority"
   ></app-cat-image>
   <button
     *ngIf="imageHasLoaded"

@@ -6,7 +6,11 @@ import { environment } from '../environments/environment';
 export interface Cat {
   id: number;
   name: string;
-  url: string;
+  imageData: {
+    urlPath: string;
+    width: number;
+    height: number;
+  };
 }
 
 @Injectable({

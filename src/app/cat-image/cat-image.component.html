@@ -1,6 +1,9 @@
 <img
   *ngIf="cat"
   class="rounded-lg w-ful shadow-lg"
-  [src]="cat.url"
+  [ngSrc]="cat.imageData.urlPath"
   [alt]="cat.name"
+  [width]="cat.imageData.width"
+  [height]="cat.imageData.height"
+  [priority]="priority"
 />
