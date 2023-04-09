@@ -17,8 +17,8 @@ import { AddYourPikComponent } from './add-your-pik/add-your-pik.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CatImageComponent } from './cat-image/cat-image.component';
-import { SpinnerComponent } from './spinner/spinner.component';
 import { NgOptimizedImage, provideImageKitLoader } from '@angular/common';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { NgOptimizedImage, provideImageKitLoader } from '@angular/common';
     CardComponent,
     AddYourPikComponent,
     CatImageComponent,
-    SpinnerComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
