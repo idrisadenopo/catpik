@@ -26,10 +26,11 @@
       [cats]="cats"
       (catsUpdate)="cats = $event"
     ></app-cat-item>
-    <app-reload
-      [cats]="cats"
-      (catsUpdate)="cats = $event"
-      (loadingUpdate)="loading = $event"
-    ></app-reload>
   </div>
+  <app-reload
+    [cats]="cats"
+    (catsUpdate)="cats = $event"
+    (loadingUpdate)="loading = $event"
+    class="fixed right-0 bottom-0"
+  ></app-reload>
 </ng-template>
