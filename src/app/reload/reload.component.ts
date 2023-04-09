@@ -19,6 +19,7 @@ export class ReloadComponent {
       this.catsUpdate.emit(newCats.cats);
       this.loadingUpdate.emit(false);
       console.log(this.cats);
+      window.scrollTo(0, 0);
     });
   }
 }

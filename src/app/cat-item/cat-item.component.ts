@@ -38,6 +38,7 @@ export class CatItemComponent {
             console.log('cat', newCats);
             this.catsUpdate.emit(newCats.cats);
             console.log(this.cats);
+            window.scrollTo(0, 0);
           });
         }
       },
