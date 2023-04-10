@@ -12,14 +12,12 @@ export class CatsDisplayComponent implements OnInit {
   cats: Cat[] | undefined;
   loading = true;
 
-  // TODO: make calls run in sequence
   async ngOnInit() {
-    this.catsService.addLocalFavouritesToFavourites();
+    await this.catsService.syncLocalServerFavourites();
     this.showCats();
   }
 
   showCats() {
-    console.log('running showcats');
     this.catsService.getRandomCats().subscribe(cats => {
       this.cats = cats.cats;
       this.loading = false;

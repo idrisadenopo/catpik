@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { catchError, lastValueFrom, of, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 
 export interface Cat {
@@ -35,7 +35,7 @@ export class CatsService {
 
   addToFavourites(catId: number) {
     return this.http
-      .post(this.baseUrl + '/favourites', {
+      .post<{ id: string; catId: number }>(this.baseUrl + '/favourites', {
         catId,
       })
       .pipe(
@@ -82,25 +82,27 @@ export class CatsService {
     return false;
   }
 
-  async addLocalFavouritesToFavourites() {
-    console.log('runnung addtoLoc');
+  async getLocalServerFavouritesDiff() {
     const localFavourites = this.getLocalFavourites();
     let serverFavourites: number[] = [];
-    this.getFavourites().subscribe(favouriteCats => {
-      console.log(favouriteCats);
-      serverFavourites = favouriteCats.cats.map(cat => cat.id);
-      if (localFavourites.length > 0) {
-        console.log(serverFavourites);
-        const difference = localFavourites.filter(
-          favourite => !serverFavourites.includes(favourite),
-        );
-        console.log(difference);
-        if (difference.length > 0)
-          difference.forEach(favouriteId =>
-            this.addToFavourites(favouriteId).subscribe(),
-          );
-      }
-      console.log('done with sub');
-    });
+    const favouriteCats = await lastValueFrom(this.getFavourites());
+
+    serverFavourites = favouriteCats.cats.map(cat => cat.id);
+    if (localFavourites.length > 0) {
+      const difference = localFavourites.filter(
+        favourite => !serverFavourites.includes(favourite),
+      );
+      return difference;
+    }
+    return [];
+  }
+
+  async syncLocalServerFavourites() {
+    const diff = await this.getLocalServerFavouritesDiff();
+    if (diff.length === 0) return;
+    for (let index = 0; index < diff.length; index++) {
+      this.addToFavourites(diff[index]).subscribe();
+    }
+    return;
   }
 }

@@ -13,8 +13,8 @@ export class FavouriteCatsDisplayComponent implements OnInit {
   cats: Cat[] | undefined;
   loading = true;
 
-  ngOnInit() {
-    this.catsService.addLocalFavouritesToFavourites();
+  async ngOnInit() {
+    await this.catsService.syncLocalServerFavourites();
     this.showFavouriteCats();
   }
 
