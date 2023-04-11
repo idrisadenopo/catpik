@@ -5,32 +5,33 @@
   <app-loader></app-loader>
 </div>
 <div
-  *ngIf="!cats || (cats && cats.length === 0); else catsExist"
-  class="container mx-auto justify-center items-center text-start"
+  *ngIf="cats && cats.length > 0 && !loading; else noCats"
+  class="columns-1 md:columns-2 lg:columns-3 2xl:columns-5 p-5 rounded-lg relative"
 >
-  <app-card
-    image="../../assets/out-of-stock.png"
-    title="We're all out!"
-    text="We're getting cats for you as fast we can! Check back soon!"
-    buttonText="Check"
-    (buttonClicked)="showCats()"
-  ></app-card>
-</div>
-<ng-template #catsExist>
-  <div
-    class="columns-1 md:columns-2 lg:columns-3 2xl:columns-5 p-5 rounded-lg relative"
-  >
-    <app-cat-item
-      *ngFor="let cat of cats"
-      [cat]="cat"
-      [cats]="cats"
-      (catsUpdate)="cats = $event"
-    ></app-cat-item>
-  </div>
-  <app-reload
+  <app-cat-item
+    *ngFor="let cat of cats"
+    [cat]="cat"
     [cats]="cats"
     (catsUpdate)="cats = $event"
-    (loadingUpdate)="loading = $event"
-    class="fixed right-0 bottom-0"
-  ></app-reload>
+  ></app-cat-item>
+</div>
+<app-reload
+  [cats]="cats"
+  (catsUpdate)="cats = $event"
+  (loadingUpdate)="loading = $event"
+  class="fixed right-0 bottom-0"
+></app-reload>
+<ng-template #noCats>
+  <div
+    *ngIf="!loading"
+    class="container mx-auto justify-center items-center text-start"
+  >
+    <app-card
+      image="../../assets/out-of-stock.png"
+      title="We're all out!"
+      text="We're getting cats for you as fast we can! Check back soon!"
+      buttonText="Check"
+      (buttonClicked)="showCats()"
+    ></app-card>
+  </div>
 </ng-template>
